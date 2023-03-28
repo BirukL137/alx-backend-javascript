@@ -6,4 +6,5 @@ export const queryAPI = (endpoint) => {
     throw new Error('Endpoint load is high');
   }
   weakMap.set(endpoint, count + 1);
+  return count;
 };
