@@ -1,10 +1,12 @@
 interface Teacher {
   readonly firstName: string;
-  readonly fullTimeEmployee: boolean;
-  location: string;
+  readonly lastName: string;
+  fullTimeEmployee: boolean;
   yearsOfExperience?: number;
+  location: string;
   [key: string]: any;
 }
+
 
 // task 1 - Let's build a Teacher interface
 const teacher3: Teacher = {
