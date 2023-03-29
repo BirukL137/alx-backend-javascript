@@ -5,27 +5,34 @@ interface Student {
   location: string;
 }
 
-// Create two students
-const student1 = new Student('John', 'Doe', 25, 'Seattle');
-const student2 = new Student('Jane', 'Doe', 23, 'New York');
+const studentA: Student = {
+  firstName: "Jordan",
+  lastName: "Smith",
+  age: 23,
+  location: "USA",
+};
 
-// Create an array named studentsList containing the two variables
-const studentsList = [student1, student2];
+const studentB: Student = {
+  firstName: "Jerry",
+  lastName: "Martin",
+  age: 45,
+  location: "USA",
+};
 
-// Render a table and for each element in the array, append a new row to the table
-const table2 = document.createElement('table');
-document.body.appendChild(table2);
+const studentsList = [studentA, studentB];
 
-for (let i = 0; i < studentsList.length; i++) {
-  const row = document.createElement('tr');
-  const cell1 = document.createElement('td');
-  const cell2 = document.createElement('td');
+const table = document.createElement("table");
+const tbody = document.createElement("tbody");
 
-  cell1.appendChild(document.createTextNode(studentsList[i].firstName));
-  cell2.appendChild(document.createTextNode(studentsList[i].location));
-
-  row.appendChild(cell1);
-  row.appendChild(cell2);
-
-  table2.appendChild(row);
-}
+studentsList.forEach((obj) => {
+  const row = document.createElement("tr");
+  const cellName = document.createElement("td");
+  const cellLocation = document.createElement("td");
+  cellName.textContent = obj.firstName;
+  cellLocation.textContent = obj.location;
+  row.appendChild(cellName);
+  row.appendChild(cellLocation);
+  tbody.appendChild(row);
+});
+table.appendChild(tbody);
+document.body.appendChild(table);
