@@ -1,38 +1,72 @@
-interface Student {
-  firstName: string;
-  lastName: string;
-  age: number;
-  location: string;
+// Task 5. Advanced types Part 1
+export interface DirectorInterface {
+  workFromHome(): string;
+  getCoffeeBreak(): string;
+  workDirectorTasks(): string;
 }
 
-const studentA: Student = {
-  firstName: "Jordan",
-  lastName: "Smith",
-  age: 23,
-  location: "USA",
-};
+export interface TeacherInterface {
+  workFromHome(): string;
+  getCoffeeBreak(): string;
+  workTeacherTasks(): string;
+}
 
-const studentB: Student = {
-  firstName: "Jerry",
-  lastName: "Martin",
-  age: 45,
-  location: "USA",
-};
+export class Director implements DirectorInterface {
+  workFromHome(): string {
+    return "Working from home";
+  }
 
-const studentsList = [studentA, studentB];
+  getCoffeeBreak(): string {
+    return "Getting a coffee break";
+  }
 
-const table = document.createElement("table");
-const tbody = document.createElement("tbody");
+  workDirectorTasks(): string {
+    return "Getting to director tasks";
+  }
+}
 
-studentsList.forEach((obj) => {
-  const row = document.createElement("tr");
-  const cellName = document.createElement("td");
-  const cellLocation = document.createElement("td");
-  cellName.textContent = obj.firstName;
-  cellLocation.textContent = obj.location;
-  row.appendChild(cellName);
-  row.appendChild(cellLocation);
-  tbody.appendChild(row);
-});
-table.appendChild(tbody);
-document.body.appendChild(table);
+export class Teacher implements TeacherInterface {
+  workFromHome(): string {
+    return "Cannot work from home";
+  }
+
+  getCoffeeBreak(): string {
+    return "Cannot have a break";
+  }
+
+  workTeacherTasks(): string {
+    return "Getting to work";
+  }
+}
+
+export function createEmployee(salary: (number | string)): (Director | Teacher) {
+  if (typeof salary === 'number' && salary < 500) {
+    return new Teacher();
+  }
+  return new Director();
+}
+
+// Task 6. Creating functions specific to employees
+export function isDirector(employee: (Director | Teacher)) {
+  return employee instanceof Director;
+}
+
+export function executeWork(employee: (Director | Teacher)) {
+  if (isDirector(employee)) {
+    return (employee as Director).workDirectorTasks();
+  }
+  return (employee as Teacher).workTeacherTasks();
+}
+
+// Task 7. String literal types
+
+export type Subjects = ('Math' | 'History');
+
+export function teachClass(todayClass: Subjects): string {
+  if (todayClass === 'Math') {
+    return 'Teaching Math';
+  }
+  if (todayClass === 'History') {
+    return 'Teaching History';
+  }
+}
