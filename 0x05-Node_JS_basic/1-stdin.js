@@ -11,4 +11,4 @@ process.stdin.on('readable', () => {
 
 process.stdin.on('end', () => {
   process.stdout.write('This import software is now closing\n');
-})
+});
