@@ -16,9 +16,11 @@ const app = http.createServer(async (req, res) => {
     } catch (error) {
       res.end(error.message);
     }
-  } else {
+  } else if (req.url == '/') {
     res.write('Hello Holberton School!');
   }
+  res.statusCode = 404;
+  res.end();
 });
 
 app.listen(port);
