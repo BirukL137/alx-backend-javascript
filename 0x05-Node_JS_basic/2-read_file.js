@@ -7,7 +7,6 @@ function countStudents(path) {
   } catch (err) {
     throw new Error('Cannot load the database');
   }
-
   database = database.toString().split('\n');
   let sts = database.filter((item) => item);
   sts = sts.map((item) => item.split(','));
@@ -16,9 +15,9 @@ function countStudents(path) {
   const cs = [];
   const swe = [];
   for (const i in sts) {
-    if (sts[i][3] == 'CS') {
+    if (sts[i][3] === 'CS') {
       cs.push(sts[i][0]);
-    } else if (sts[i][3] == 'SWE') {
+    } else if (sts[i][3] === 'SWE') {
       swe.push(sts[i][0]);
     }
   }
