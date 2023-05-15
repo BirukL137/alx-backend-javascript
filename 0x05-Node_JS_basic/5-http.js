@@ -8,7 +8,7 @@ const port = 1245;
 const app = http.createServer(async (req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
-  if (req.url === './students') {
+  if (req.url === '/students') {
     res.write('This is the list of our students\n');
     try {
       const sts = await countStudents(database);
