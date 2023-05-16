@@ -10,7 +10,7 @@ class StudentsController {
         sts.push('This is the list of our students');
 
         for (const key of Object.keys(fields)) {
-          message = `Number of sts in ${key}: ${
+          message = `Number of students in ${key}: ${
             fields[key].length
           }. List: ${fields[key].join(', ')}`;
 
