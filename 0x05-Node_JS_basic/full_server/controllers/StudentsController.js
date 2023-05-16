@@ -3,16 +3,16 @@ import readDatabase from '../utils';
 class StudentsController {
   static getAllStudents(request, response, DATABASE) {
     readDatabase(DATABASE)
-      .then((flds) => {
+      .then((fields) => {
         const sts = [];
         let message;
 
         sts.push('This is the list of our students');
 
-        for (const key of Object.keys(flds)) {
+        for (const key of Object.keys(fields)) {
           message = `Number of sts in ${key}: ${
-            flds[key].length
-          }. List: ${flds[key].join(', ')}`;
+            fields[key].length
+          }. List: ${fields[key].join(', ')}`;
 
           sts.push(message);
         }
@@ -30,8 +30,8 @@ class StudentsController {
       response.send(500, 'Major parameter must be CS or SWE');
     } else {
       readDatabase(DATABASE)
-        .then((flds) => {
-          const sts = flds[major];
+        .then((fields) => {
+          const sts = fields[major];
 
           response.send(200, `List: ${sts.join(', ')}`);
         })
